@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Happy Cookies</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #fffaf0;
+            color: #3d2817;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #6f3e20;
+            color: white;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header h1 {
+            font-size: 28px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 18px;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #ffd86b;
+        }
+
+        .portada {
+            min-height: 88vh;
+            background:
+                linear-gradient(rgba(70, 35, 15, 0.65), rgba(70, 35, 15, 0.65)),
+                url("img/portada.jpg");
+
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px 20px;
+            color: white;
+        }
+
+        .portada-contenido {
+            max-width: 800px;
+        }
+
+        .portada h2 {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+
+        .portada h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #ffd86b;
+        }
+
+        .portada p {
+            font-size: 21px;
+            margin-bottom: 30px;
+        }
+
+        .boton {
+            display: inline-block;
+            background-color: #f5a623;
+            color: #3d2817;
+            text-decoration: none;
+            padding: 14px 28px;
+            border-radius: 30px;
+            font-weight: bold;
+        }
+
+        .boton:hover {
+            background-color: #ffd86b;
+        }
+
+        section {
+            padding: 70px 8%;
+        }
+
+        .titulo-seccion {
+            text-align: center;
+            font-size: 38px;
+            color: #6f3e20;
+            margin-bottom: 15px;
+        }
+
+        .descripcion-seccion {
+            max-width: 850px;
+            margin: 0 auto 40px;
+            text-align: center;
+            font-size: 18px;
+            color: #65452f;
+        }
+
+        .fondo-claro {
+            background-color: #fff3d6;
+        }
+
+        .tarjetas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 25px;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .tarjeta {
+            background-color: white;
+            border-radius: 18px;
+            padding: 28px;
+            box-shadow: 0 5px 18px rgba(80, 45, 20, 0.12);
+            text-align: center;
+        }
+
+        .tarjeta .icono {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .tarjeta h3 {
+            color: #a3541f;
+            margin-bottom: 12px;
+            font-size: 22px;
+        }
+
+        .tarjeta p {
+            font-size: 16px;
+            color: #5d4635;
+        }
+
+        .propuesta {
+            max-width: 1000px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 35px;
+            align-items: center;
+        }
+
+        .propuesta img {
+            width: 100%;
+            min-height: 330px;
+            object-fit: cover;
+            border-radius: 20px;
+            background-color: #e7cba4;
+        }
+
+        .propuesta-texto h3 {
+            font-size: 30px;
+            color: #874519;
+            margin-bottom: 18px;
+        }
+
+        .propuesta-texto p {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .nutricion {
+            max-width: 950px;
+            margin: auto;
+            background-color: white;
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 5px 18px rgba(80, 45, 20, 0.12);
+            text-align: center;
+        }
+
+        .nutricion img {
+            width: 100%;
+            max-width: 600px;
+            margin-top: 20px;
+            border-radius: 15px;
+        }
+
+        .espacio-foto {
+            max-width: 600px;
+            min-height: 280px;
+            margin: 25px auto 0;
+            background-color: #f4e0bd;
+            border: 3px dashed #a66a38;
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            font-size: 19px;
+            color: #6f3e20;
+        }
+
+        .ingredientes {
+            max-width: 800px;
+            margin: auto;
+            background-color: white;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 5px 18px rgba(80, 45, 20, 0.12);
+        }
+
+        .ingredientes ul {
+            padding-left: 25px;
+            font-size: 18px;
+        }
+
+        .ingredientes li {
+            margin-bottom: 12px;
+        }
+
+        .pasos {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .paso {
+            display: flex;
+            gap: 22px;
+            align-items: flex-start;
+            background-color: white;
+            border-radius: 18px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(80, 45, 20, 0.1);
+        }
+
+        .numero {
+            min-width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background-color: #f5a623;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 24px;
+            color: #4b2b15;
+        }
+
+        .paso h3 {
+            color: #8a451b;
+            margin-bottom: 8px;
+        }
+
+        .calendario {
+            max-width: 1050px;
+            margin: auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 5px 18px rgba(80, 45, 20, 0.12);
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 700px;
+        }
+
+        th {
+            background-color: #6f3e20;
+            color: white;
+            padding: 14px;
+        }
+
+        td {
+            border: 1px solid #e6cfad;
+            padding: 12px;
+            text-align: center;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 9px;
+            border: 1px solid #cfa97b;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        .acciones {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        button {
+            border: none;
+            background-color: #f5a623;
+            color: #3d2817;
+            padding: 13px 25px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        button:hover {
+            background-color: #ffd86b;
+        }
+
+        .boton-borrar {
+            background-color: #c85a45;
+            color: white;
+        }
+
+        .resultado {
+            max-width: 850px;
+            margin: 30px auto 0;
+            background-color: #fff3d6;
+            border-left: 7px solid #f5a623;
+            border-radius: 12px;
+            padding: 25px;
+            display: none;
+        }
+
+        .resultado h3 {
+            color: #79401b;
+            margin-bottom: 10px;
+        }
+
+        .aviso {
+            max-width: 850px;
+            margin: 30px auto 0;
+            background-color: #fff8e9;
+            border: 1px solid #e5c68f;
+            border-radius: 12px;
+            padding: 20px;
+            font-size: 14px;
+            color: #65452f;
+        }
+
+        footer {
+            background-color: #4c2a17;
+            color: white;
+            text-align: center;
+            padding: 35px 20px;
+        }
+
+        footer h2 {
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 800px) {
+            header {
+                justify-content: center;
+                text-align: center;
+            }
+
+            nav {
+                margin-top: 15px;
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 6px;
+            }
+
+            .portada h2 {
+                font-size: 43px;
+            }
+
+            .portada h3 {
+                font-size: 23px;
+            }
+
+            .propuesta {
+                grid-template-columns: 1fr;
+            }
+
+            .titulo-seccion {
+                font-size: 31px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>🍪 Happy Cookies</h1>
+
+        <nav>
+            <a href="#inicio">Inicio</a>
+            <a href="#riesgos">Riesgos</a>
+            <a href="#beneficios">Beneficios</a>
+            <a href="#nutricion">Nutrición</a>
+            <a href="#ingredientes">Ingredientes</a>
+            <a href="#preparacion">Preparación</a>
+            <a href="#calendario">Calendario</a>
+        </nav>
+    </header>
+
+    <main>
+
+        <section class="portada" id="inicio">
+            <div class="portada-contenido">
+                <h2>Happy Cookies</h2>
+
+                <h3>Una alternativa rica y nutritiva</h3>
+
+                <p>
+                    Galletas de hígado de pollo con chocochips creadas como una
+                    alternativa atractiva para mejorar la alimentación de los estudiantes.
+                </p>
+
+                <a class="boton" href="#propuesta">
+                    Conoce nuestro proyecto
+                </a>
+            </div>
+        </section>
+
+        <section id="propuesta">
+            <h2 class="titulo-seccion">Nuestra propuesta</h2>
+
+            <p class="descripcion-seccion">
+                Happy Cookies busca combinar un sabor agradable con ingredientes
+                que aportan nutrientes importantes. Nuestro proyecto presenta una
+                opción diferente de galletas pensada para estudiantes.
+            </p>
+
+            <div class="propuesta">
+                <img src="img/galletas.jpg" alt="Galletas Happy Cookies">
+
+                <div class="propuesta-texto">
+                    <h3>Ricas, prácticas y diferentes</h3>
+
+                    <p>
+                        Las Happy Cookies son elaboradas con hígado de pollo y
+                        chocochips, buscando ofrecer un alimento de sabor agradable
+                        y con nutrientes importantes.
+                    </p>
+
+                    <p>
+                        No reemplazan una alimentación equilibrada. Deben consumirse
+                        como parte de una dieta variada que incluya frutas, verduras,
+                        cereales, proteínas y agua.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="fondo-claro" id="riesgos">
+            <h2 class="titulo-seccion">
+                Riesgos de una alimentación poco saludable
+            </h2>
+
+            <p class="descripcion-seccion">
+                Una alimentación con poca variedad y un consumo frecuente de
+                productos con exceso de azúcar, sal o grasas puede afectar el
+                bienestar y el rendimiento diario.
+            </p>
+
+            <div class="tarjetas">
+                <article class="tarjeta">
+                    <div class="icono">😴</div>
+
+                    <h3>Cansancio</h3>
+
+                    <p>
+                        Una alimentación poco equilibrada puede relacionarse con
+                        falta de energía durante las actividades escolares.
+                    </p>
+                </article>
+
+                <article class="tarjeta">
+                    <div class="icono">🧠</div>
+
+                    <h3>Menor concentración</h3>
+
+                    <p>
+                        No consumir suficientes nutrientes puede dificultar la
+                        atención y el rendimiento en clases.
+                    </p>
+                </article>
+
+                <article class="tarjeta">
+                    <div class="icono">🍭</div>
+
+                    <h3>Exceso de azúcar</h3>
+
+                    <p>
+                        Consumir demasiados productos azucarados puede favorecer
+                        problemas dentales y hábitos poco saludables.
+                    </p>
+                </article>
+
+                <article class="tarjeta">
+                    <div class="icono">🥤</div>
+
+                    <h3>Poca variedad</h3>
+
+                    <p>
+                        Repetir siempre los mismos alimentos puede impedir que el
+                        cuerpo reciba diferentes vitaminas y minerales.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <section id="beneficios">
+            <h2 class="titulo-seccion">
+                Nutrientes del hígado de pollo
+            </h2>
+
+            <p class="descripcion-seccion">
+                El hígado de pollo contiene varios nutrientes importantes. Sin
+                embargo, debe consumirse en cantidades adecuadas y como parte de
+                una alimentación variada.
+            </p>
+
+            <div class="tarjetas">
+                <article class="tarjeta">
+                    <div class="icono">🩸</div>
+
+                    <h3>Hierro</h3>
+
+                    <p>
+                        El hierro participa en la formación de hemoglobina y en el
+                        transporte de oxígeno por el organismo.
+                    </p>
+                </article>
+
+                <article class="tarjeta">
+                    <div class="icono">💪</div>
+
+                    <h3>Proteínas</h3>
+
+                    <p>
+                        Las proteínas ayudan al crecimiento, mantenimiento y
+                        reparación de los tejidos del cuerpo.
+                    </p>
+                </article>
+
+                <article class="tarjeta">
+                    <div class="icono">⚡</div>
+
+                    <h3>Vitamina B12</h3>
+
+                    <p>
+                        La vitamina B12 participa en la formación de células
+                        sanguíneas y en el funcionamiento del sistema nervioso.
+                    </p>
+                </article>
+
+                <article class="tarjeta">
+                    <div class="icono">🌱</div>
+
+                    <h3>Folato</h3>
+
+                    <p>
+                        El folato interviene en la formación de nuevas células y
+                        en distintos procesos del organismo.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <section class="fondo-claro" id="nutricion">
+            <h2 class="titulo-seccion">
+                Información nutricional
+            </h2>
+
+            <p class="descripcion-seccion">
+                Valores nutricionales de las galletas de higado
+
+            </p>
+
+            <div class="nutricion">
+                <h3>Tabla nutricional del producto</h3>
+
+                <<img src="img/nutricion.jpg" alt="Información nutricional de Happy Cookies">>
+                    
+                </div>
+
+         
+            </div>
+        </section>
+
+        <section id="ingredientes">
+            <h2 class="titulo-seccion">Ingredientes</h2>
+
+            <p class="descripcion-seccion">
+                Esta lista se completará cuando tengamos las cantidades exactas
+                de la receta.
+            </p>
+
+            <div class="ingredientes">
+                <ul>
+                    <li>250 gramos de Hígado de pollo.</li>
+                    <li>1/2 de Chocochips 30% de cacao bajo en azucar.</li>
+                    <li>2 huevos
+                        1 cdta de polvo de hornear.</li>
+                    <li>2 tazas de harina de trigo.</li>
+                    <li>1/2 taza de mantequilla light.</li>
+                    <li>1/8 de taza de stevia
+                        1cdta de esencia de vainilla.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="fondo-claro" id="preparacion">
+            <h2 class="titulo-seccion">
+                Proceso de preparación
+            </h2>
+
+            <p class="descripcion-seccion">
+                67
+            </p>
+
+            <div class="pasos">
+
+                <article class="paso">
+                    <div class="numero">1</div>
+
+                    <div>
+                        <h3>Preparar los ingredientes</h3>
+
+                        <p>
+                            Lavar las manos, limpiar el área de trabajo y separar
+                            todos los ingredientes y utensilios necesarios.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="paso">
+                    <div class="numero">2</div>
+
+                    <div>
+                        <h3>Preparar el hígado</h3>
+
+                        <p>
+                            Limpiar , cocinar y licuar completamente el hígado de pollo antes
+                            de incorporarlo a la preparación.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="paso">
+                    <div class="numero">3</div>
+
+                    <div>
+                        <h3>Mezclar la masa</h3>
+
+                        <p>
+                            Combinar los ingredientes siguiendo las cantidades
+                            establecidas en la receta.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="paso">
+                    <div class="numero">4</div>
+
+                    <div>
+                        <h3>Agregar los chocochips</h3>
+
+                        <p>
+                            Incorporar los chocochips y mezclar hasta que queden
+                            distribuidos en la masa.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="paso">
+                    <div class="numero">5</div>
+
+                    <div>
+                        <h3>Formar las galletas</h3>
+
+                        <p>
+                            Dividir la masa en porciones similares y colocarlas
+                            sobre una bandeja adecuada para horno.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="paso">
+                    <div class="numero">6</div>
+
+                    <div>
+                        <h3>Hornear</h3>
+
+                        <p>
+                            Hornear las galletas con la temperatura y el tiempo
+                            establecidos en la receta, bajo supervisión de un adulto.
+                        </p>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <section id="calendario">
+            <h2 class="titulo-seccion">
+                Calendario de consumo
+            </h2>
+
+            <p class="descripcion-seccion">
+                Registra cuántas galletas consumes durante la semana. También
+                puedes indicar cómo te sentiste ese día.
+            </p>
+
+            <div class="calendario">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Día</th>
+                            <th>Cantidad de galletas</th>
+                            <th>Momento del día</th>
+                            <th>¿Cómo te sentiste?</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>Lunes</td>
+
+                            <td>
+                                <input type="number" min="0" max="20" value="0" class="cantidad">
+                            </td>
+
+                            <td>
+                                <select class="momento">
+                                    <option>No consumí</option>
+                                    <option>Desayuno</option>
+                                    <option>Refrigerio</option>
+                                    <option>Después del almuerzo</option>
+                                    <option>Otro momento</option>
+                                </select>
+                            </td>
+
+                            <td>
+                                <select class="sensacion">
+                                    <option>Sin registrar</option>
+                                    <option>Con energía</option>
+                                    <option>Satisfecho</option>
+                                    <option>Con hambre</option>
+                                    <option>Cansado</option>
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Martes</td>
+
+                            <td>
+                                <input type="number" min="0" max="20" value="0" class="cantidad">
+                            </td>
+
+                            <td>
+                                <select class="momento">
+                                    <option>No consumí</option>
+                                    <option>Desayuno</option>
+                                    <option>Refrigerio</option>
+                                    <option>Después del almuerzo</option>
+                                    <option>Otro momento</option>
+                                </select>
+                            </td>
+
+                            <td>
+                                <select class="sensacion">
+                                    <option>Sin registrar</option>
+                                    <option>Con energía</option>
+                                    <option>Satisfecho</option>
+                                    <option>Con hambre</option>
+                                    <option>Cansado</option>
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Miércoles</td>
+
+                            <td>
+                                <input type="number" min="0" max="20" value="0" class="cantidad">
+                            </td>
+
+                            <td>
+                                <select class="momento">
+                                    <option>No consumí</option>
+                                    <option>Desayuno</option>
+                                    <option>Refrigerio</option>
+                                    <option>Después del almuerzo</option>
+                                    <option>Otro momento</option>
+                                </select>
+                            </td>
+
+                            <td>
+                                <select class="sensacion">
+                                    <option>Sin registrar</option>
+                                    <option>Con energía</option>
+                                    <option>Satisfecho</option>
+                                    <option>Con hambre</option>
+                                    <option>Cansado</option>
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Jueves</td>
+
+                            <td>
+                                <input type="number" min="0" max="20" value="0" class="cantidad">
+                            </td>
+
+                            <td>
+                                <select class="momento">
+                                    <option>No consumí</option>
+                                    <option>Desayuno</option>
+                                    <option>Refrigerio</option>
+                                    <option>Después del almuerzo</option>
+                                    <option>Otro momento</option>
+                                </select>
+                            </td>
+
+                            <td>
+                                <select class="sensacion">
+                                    <option>Sin registrar</option>
+                                    <option>Con energía</option>
+                                    <option>Satisfecho</option>
+                                    <option>Con hambre</option>
+                                    <option>Cansado</option>
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Viernes</td>
+
+                            <td>
+                                <input type="number" min="0" max="20" value="0" class="cantidad">
+                            </td>
+
+                            <td>
+                                <select class="momento">
+                                    <option>No consumí</option>
+                                    <option>Desayuno</option>
+                                    <option>Refrigerio</option>
+                                    <option>Después del almuerzo</option>
+                                    <option>Otro momento</option>
+                                </select>
+                            </td>
+
+                            <td>
+                                <select class="sensacion">
+                                    <option>Sin registrar</option>
+                                    <option>Con energía</option>
+                                    <option>Satisfecho</option>
+                                    <option>Con hambre</option>
+                                    <option>Cansado</option>
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Sábado</td>
+
+                            <td>
+                                <input type="number" min="0" max="20" value="0" class="cantidad">
+                            </td>
+
+                            <td>
+                                <select class="momento">
+                                    <option>No consumí</option>
+                                    <option>Desayuno</option>
+                                    <option>Refrigerio</option>
+                                    <option>Después del almuerzo</option>
+                                    <option>Otro momento</option>
+                                </select>
+                            </td>
+
+                            <td>
+                                <select class="sensacion">
+                                    <option>Sin registrar</option>
+                                    <option>Con energía</option>
+                                    <option>Satisfecho</option>
+                                    <option>Con hambre</option>
+                                    <option>Cansado</option>
+                                </select>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Domingo</td>
+
+                            <td>
+                                <input type="number" min="0" max="20" value="0" class="cantidad">
+                            </td>
+
+                            <td>
+                                <select class="momento">
+                                    <option>No consumí</option>
+                                    <option>Desayuno</option>
+                                    <option>Refrigerio</option>
+                                    <option>Después del almuerzo</option>
+                                    <option>Otro momento</option>
+                                </select>
+                            </td>
+
+                            <td>
+                                <select class="sensacion">
+                                    <option>Sin registrar</option>
+                                    <option>Con energía</option>
+                                    <option>Satisfecho</option>
+                                    <option>Con hambre</option>
+                                    <option>Cansado</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="acciones">
+                    <button onclick="calcularConsumo()">
+                        Ver resumen semanal
+                    </button>
+
+                    <button class="boton-borrar" onclick="borrarRegistro()">
+                        Borrar registro
+                    </button>
+                </div>
+
+                <div class="resultado" id="resultado">
+                    <h3>Resumen semanal</h3>
+
+                    <p id="textoResultado"></p>
+                </div>
+            </div>
+
+            <div class="aviso">
+                <strong>Importante:</strong> este calendario es únicamente una
+                herramienta educativa para registrar el consumo. No puede determinar
+                cambios reales en la salud ni reemplaza la evaluación de un médico
+                o nutricionista.
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <h2>🍪 Happy Cookies</h2>
+
+        <p>
+            Una propuesta escolar para promover una alimentación más variada,
+            atractiva y consciente.
+        </p>
+    </footer>
+
+    <script>
+        const cantidades = document.querySelectorAll(".cantidad");
+        const momentos = document.querySelectorAll(".momento");
+        const sensaciones = document.querySelectorAll(".sensacion");
+
+        function calcularConsumo() {
+            let total = 0;
+            let diasConsumidos = 0;
+
+            cantidades.forEach(function (campo) {
+                const cantidad = Number(campo.value);
+
+                if (cantidad > 0) {
+                    diasConsumidos++;
+                    total += cantidad;
+                }
+            });
+
+            let mensaje = "";
+
+            if (total === 0) {
+                mensaje =
+                    "Todavía no registraste consumo de Happy Cookies durante esta semana.";
+            } else if (diasConsumidos <= 2) {
+                mensaje =
+                    "Consumiste " + total + " galletas durante " +
+                    diasConsumidos + " día(s). Es un consumo ocasional. Recuerda acompañarlas con otros alimentos variados.";
+            } else if (diasConsumidos <= 4) {
+                mensaje =
+                    "Consumiste " + total + " galletas durante " +
+                    diasConsumidos + " días. Mantén una alimentación variada y respeta la porción recomendada del producto.";
+            } else {
+                mensaje =
+                    "Consumiste " + total + " galletas durante " +
+                    diasConsumidos + " días. Procura variar tus refrigerios y no consumir siempre el mismo alimento.";
+            }
+
+            document.getElementById("textoResultado").textContent = mensaje;
+            document.getElementById("resultado").style.display = "block";
+
+            guardarRegistro();
+        }
+
+        function guardarRegistro() {
+            const registro = {
+                cantidades: [],
+                momentos: [],
+                sensaciones: []
+            };
+
+            cantidades.forEach(function (campo) {
+                registro.cantidades.push(campo.value);
+            });
+
+            momentos.forEach(function (campo) {
+                registro.momentos.push(campo.value);
+            });
+
+            sensaciones.forEach(function (campo) {
+                registro.sensaciones.push(campo.value);
+            });
+
+            localStorage.setItem(
+                "registroHappyCookies",
+                JSON.stringify(registro)
+            );
+        }
+
+        function cargarRegistro() {
+            const registroGuardado = localStorage.getItem(
+                "registroHappyCookies"
+            );
+
+            if (!registroGuardado) {
+                return;
+            }
+
+            const registro = JSON.parse(registroGuardado);
+
+            cantidades.forEach(function (campo, posicion) {
+                campo.value = registro.cantidades[posicion] || 0;
+            });
+
+            momentos.forEach(function (campo, posicion) {
+                campo.value =
+                    registro.momentos[posicion] || "No consumí";
+            });
+
+            sensaciones.forEach(function (campo, posicion) {
+                campo.value =
+                    registro.sensaciones[posicion] || "Sin registrar";
+            });
+        }
+
+        function borrarRegistro() {
+            cantidades.forEach(function (campo) {
+                campo.value = 0;
+            });
+
+            momentos.forEach(function (campo) {
+                campo.selectedIndex = 0;
+            });
+
+            sensaciones.forEach(function (campo) {
+                campo.selectedIndex = 0;
+            });
+
+            localStorage.removeItem("registroHappyCookies");
+
+            document.getElementById("resultado").style.display = "none";
+        }
+
+        cantidades.forEach(function (campo) {
+            campo.addEventListener("change", guardarRegistro);
+        });
+
+        momentos.forEach(function (campo) {
+            campo.addEventListener("change", guardarRegistro);
+        });
+
+        sensaciones.forEach(function (campo) {
+            campo.addEventListener("change", guardarRegistro);
+        });
+
+        cargarRegistro();
+    </script>
+
+</body>
+
+</html>
